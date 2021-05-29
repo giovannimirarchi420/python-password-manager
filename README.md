@@ -61,7 +61,7 @@ There are only 4 simple command: (you can get them typing "help" after tool star
 - exit --> Exit from tool, it's really important to use this command, to ensure the db encryption and guarantee the correct behaviour to ne next session.
 
 ## Screenshot
-![view-screen](./img/screenshot.jpg)
+![view-screen](./screenview.png)
 
 ## Author
 
