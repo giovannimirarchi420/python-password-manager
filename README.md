@@ -1,6 +1,17 @@
-# passwordManager
+# Password Manager
 
 A simple command-line tool to store securely all your password!
+
+## Table of Contents
+* [Why passwordManager?](#why-passwordmanager?)
+* [Technologies and Libraries](#technologies-and-libraries)
+* [Setup](#setup)
+* [How to launch the tool](#hot-to-launch-the-tool)
+* [Commands](#commands)
+* [Screenshot](#screenshot)
+* [Author](#author)
+
+<!-- * [License](#license) -->
 
 ## Why passwordManager?
 
@@ -15,7 +26,7 @@ Any suggestion / modification is welcome, in case of bugs please report them!
 
 I have no liability whatsoever for the use of this software 
 
-## Technologies and libraries
+## Technologies and Libraries
 ```
 Python 3.9.3 (programming language)
 sqlite3 (db)
@@ -40,18 +51,20 @@ python pswManager.py
 ```
 Or replace pswManager.py with the file path if you aren't in the same directory
 
-## Tool's commands
+## Commands
 
 There are only 4 simple command: (you can get them typing "help" after tool start)
-```
-createpsw --> It permit you to add a password into database, after call the command, the tool ask you all the needed info
-view --> View all password saved into db
-remove --> It permit you to remove a password from database, after call the command, the tool ask you all the needed info
-exit --> Exit from tool, it's really important to use this command, to ensure the db encryption and guarantee the correct behaviour to ne next session.
-```
 
-# Author info
+- createpsw --> It permit you to add a password into database, after call the command, the tool ask you all the needed info
+- view --> View all password saved into db
+- remove --> It permit you to remove a password from database, after call the command, the tool ask you all the needed info
+- exit --> Exit from tool, it's really important to use this command, to ensure the db encryption and guarantee the correct behaviour to ne next session.
+
+## Screenshot
+![view-screen](./img/screenshot.jpg)
+
+## Author
 
 This project was made by Giovanni Mirarchi (alias @Hemek), BSc in Computer Engineering.
-Linkedin: https://www.linkedin.com/in/giovanni-mirarchi/
-E-mail: giovanni.mirarchi<at>hotmail.com
+- Linkedin: https://www.linkedin.com/in/giovanni-mirarchi/
+- E-mail: giovanni.mirarchi<at>hotmail.com
