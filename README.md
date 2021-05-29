@@ -43,12 +43,12 @@ Or replace pswManager.py with the file path if you aren't in the same directory
 ## Tool's commands
 
 There are only 4 simple command: (you can get them typing "help" after tool start)
-
+```
 createpsw --> It permit you to add a password into database, after call the command, the tool ask you all the needed info
 view --> View all password saved into db
 remove --> It permit you to remove a password from database, after call the command, the tool ask you all the needed info
 exit --> Exit from tool, it's really important to use this command, to ensure the db encryption and guarantee the correct behaviour to ne next session.
-
+```
 
 # Author info
 
