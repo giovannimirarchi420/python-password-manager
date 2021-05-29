@@ -68,3 +68,5 @@ There are only 4 simple command: (you can get them typing "help" after tool star
 This project was made by Giovanni Mirarchi (alias @Hemek), BSc in Computer Engineering.
 - Linkedin: https://www.linkedin.com/in/giovanni-mirarchi/
 - E-mail: giovanni.mirarchi<at>hotmail.com
+  
+  Feel free to contact me!.
