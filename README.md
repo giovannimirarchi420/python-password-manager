@@ -63,10 +63,12 @@ The same token (password + salt), is the secret key for db encrypting/decrypting
 
 There are only 4 simple command: (you can get them typing "help" after tool start)
 
-- createpsw --> It permit you to add a password into database, after call the command, the tool ask you all the needed info
-- view --> View all password saved into db
-- remove --> It permit you to remove a password from database, after call the command, the tool ask you all the needed info
+- createpsw --> It permit you to add a password into database, after call the command, the tool ask you all the needed info.
+- view --> View all password saved into db.
+- remove --> It permit you to remove a password from database, after call the command, the tool ask you all the needed info.
 - exit --> Exit from tool, it's really important to use this command, to ensure the db encryption and guarantee the correct behaviour to ne next session.
+- change-tool-psw -->   Change the passowrd for pswManager tool.
+- chgpsw -->   Change the password for the selected entry, after call the command, the tool ask you all the needed info.
 
 ## Screenshot
 ![view-screen](./screenview.png)
