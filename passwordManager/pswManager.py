@@ -140,6 +140,45 @@ def view():
     db.close()
     return data
 
+def chgpsw():
+    id = input('Select the entry id to change password:')
+    try:
+        int_id = int(id)
+    except:
+        print('Please enter an integer number')
+        return False
+    db = sqlite3.connect('psw_db.db')
+    cursor = db.cursor()
+    data_cursor = cursor.execute('SELECT ID from psw_table where id = ?', (id))
+    data = data_cursor.fetchall()
+    #Check if exist and entry with the selected id
+    if len(data) == 0:
+        print('Some error occurred, probably there are no entry with this id')
+        db.close()
+        return
+
+    new_password = input('Enter the new password: ')
+    new_password_again = input('Enter the new password again: ')
+
+    if new_password == new_password_again:
+
+        cursor.execute('UPDATE psw_table SET password = ? WHERE ID = ?', (new_password, id))
+        db.commit()
+        db.close()
+        print('Password changed succesfully')
+    else:
+        print('Passwords do not match, retry')
+            
+    
+def help():
+    #show the list of commnads
+    print('view            -   View all saved password')
+    print('createpsw       -   Create a new record for saving a password')
+    print('remove          -   Remove a record from db')
+    print('exit            -   Exit from the tool')
+    print('change-tool-psw -   Change the passowrd for pswManager tool')
+    print('chgpsw          -   Change the password for the selected entry')
+    
 startup()
 print('Type help for the list of command')
 #Main cicle of the tool
@@ -148,12 +187,7 @@ while True:
     input_data = input('pswmanager>').strip()
 
     if input_data == 'help':
-        #show the list of commnads
-        print('view            -   View all saved password')
-        print('createpsw       -   Create a new record for saving a password')
-        print('remove          -   Remove a record from db')
-        print('exit            -   Exit from the tool')
-        print('change-tool-psw -   Change the passowrd for pswManager tool')
+        help()
 
     #Create a new entry into db
     elif input_data == 'createpsw':
@@ -183,7 +217,9 @@ while True:
 
     elif input_data == 'change-tool-psw':
         change_password()
-        
+
+    elif input_data == 'chgpsw':
+        chgpsw()
     else:
         print('Error, this command does not exist, type "help" for the command list')
 
