@@ -6,7 +6,8 @@ A simple command-line tool to store securely all your password!
 * [Why passwordManager?](#why-passwordmanager?)
 * [Technologies and Libraries](#technologies-and-libraries)
 * [Setup](#setup)
-* [How to launch the tool](#hot-to-launch-the-tool)
+* [How to launch the tool](#how-to-launch-the-tool)
+* [How it works](#how-it-works)
 * [Commands](#commands)
 * [Screenshot](#screenshot)
 * [Author](#author)
@@ -50,6 +51,13 @@ To launch the tool type:
 python pswManager.py
 ```
 Or replace pswManager.py with the file path if you aren't in the same directory
+
+## How it works
+
+When start the tool with ```python pswManager.py``` it ask you to set a new password for the tool, after this at every launch of the tool, you must insert the same password to access to database and command tool.
+When a password is setted, pswManager create a config.psw file, where is stored the encrypted password (sha256) combined with the salt, the salt is a random value generated at password choosing moment.
+After password choosing, on restart of the tool, pswManager extract the salt from config.psw file, encrypt with the same salt the provided password from user and go to check if the encrypted password stored in config.psw and the generated token is the same, if true the access is grant.
+The same token (password + salt), is the secret key for db encrypting/decrypting, using aes through pyAesCrypt module, so when exit command was launched from user, pswManager tool provide to encrypy and to decrypt at login phase.
 
 ## Commands
 
