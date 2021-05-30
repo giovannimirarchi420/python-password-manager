@@ -36,14 +36,14 @@ os (library) --> Installed by default
 base64 (library) --> Installed by default
 tabulate (library) --> Installed by default
 pyAesCrypt (library) --> NOT Installed by default, to install type: pip install pyAesCrypt
-sqlite3 (library) --> NOT Installed by default, to install type: pip install sqlite3
+sqlite3 (library) --> Installed by default for python 2.5 or greater
 ```
 ## Setup
 ```
 $ git clone https://github.com/giovannimirarchi420/passwordManager
-$ pip install pyAesCrypt
-$ pip install sqlite3
+$ python init.py
 ```
+Alterativly you can install ```pyAesCrypt``` library by yourself typing ```pip install pyAesCrypt```
 
 ## How to launch the tool
 To launch the tool type:
