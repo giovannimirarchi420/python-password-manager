@@ -5,6 +5,7 @@ import base64
 from tabulate import tabulate
 import pyAesCrypt
 from getpass import getpass
+
 pas = ''
 
 def cryptdb(secret):
@@ -31,8 +32,8 @@ def checkPassword(password):
 def startup():
     #Check if user already exist
     if not os.path.isfile('config.psw'):
-        if not setPassword():
-            setPassword()
+        while not setPassword():
+            pass
     
     else:
         return login()  #If the password is correct, the tools can go next 
@@ -77,7 +78,7 @@ def removeEntry(input_id):
 
 def setPassword():
     global pas
-    print("Welcome to password manager tool, please choose a password")
+    print("Please choose a password")
     salt = os.urandom(32) # Remember this
     password = getpass()
     print('Please type again')
@@ -99,6 +100,11 @@ def setPassword():
         print("Passwords do not match")
         
     return False
+
+def change_password():
+    os.remove('config.psw')
+    while not setPassword():
+        pass
     
 def createpsw():
     try:
@@ -143,11 +149,11 @@ while True:
 
     if input_data == 'help':
         #show the list of commnads
-        print('view       -   View all saved password')
-        print('createpsw  -   Create a new record for saving a password')
-        print('remove     -   Remove a record from db')
-        print('exit       -   Exit from the tool')
-
+        print('view            -   View all saved password')
+        print('createpsw       -   Create a new record for saving a password')
+        print('remove          -   Remove a record from db')
+        print('exit            -   Exit from the tool')
+        print('change-tool-psw -   Change the passowrd for pswManager tool')
 
     #Create a new entry into db
     elif input_data == 'createpsw':
@@ -175,6 +181,9 @@ while True:
         except:
             print('Some error occurred, probably there are no entry with this id')
 
+    elif input_data == 'change-tool-psw':
+        change_password()
+        
     else:
         print('Error, this command does not exist, type "help" for the command list')
 
