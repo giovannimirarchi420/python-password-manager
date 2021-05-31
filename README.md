@@ -60,7 +60,7 @@ And make it executable
 ```
 $ chmod u+x pswManager
 ```
-Ok from now you can use pswManager from everywhere into your filesystem!
+Ok, now you can use pswManager from everywhere into your filesystem!
 
 ## How to launch the tool
 To launch the tool type:
