@@ -43,7 +43,7 @@ sqlite3 (library) --> Installed by default for python 2.5 or greater
 $ git clone https://github.com/giovannimirarchi420/passwordManager
 $ python init.py
 ```
-Alteratively you can install ```pyAesCrypt``` library by yourself typing ```pip install pyAesCrypt```
+Alteratively you can install ```pyAesCrypt``` library by yourself typing ```pip install pyAesCrypt```. 
 To use this tool like a real command line script (e.g. ls, mkdir, etc..), you need to add the script directory to the env variable PATH:
 ```
 $ cd your/script/directory
