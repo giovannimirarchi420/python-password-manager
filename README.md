@@ -43,7 +43,24 @@ sqlite3 (library) --> Installed by default for python 2.5 or greater
 $ git clone https://github.com/giovannimirarchi420/passwordManager
 $ python init.py
 ```
-Alterativly you can install ```pyAesCrypt``` library by yourself typing ```pip install pyAesCrypt```
+Alteratively you can install ```pyAesCrypt``` library by yourself typing ```pip install pyAesCrypt```
+To use this tool like a real command line script (e.g. ls, mkdir, etc..), you need to add the script directory to the env variable PATH:
+```
+$ cd your/script/directory
+(We are into script dir)
+$ pwd
+(Copy the result of pwd)
+$ export PATH=$PATH:paste/here/the/path
+```
+Now you can rename pswManager.py into pswManager:
+```
+$ mv pswManager.py pswManager
+```
+And make it executable
+```
+$ chmod u+x pswManager
+```
+Ok from now you can use pswManager from everywhere into your filesystem!
 
 ## How to launch the tool
 To launch the tool type:
