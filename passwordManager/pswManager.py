@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import sqlite3
 import hashlib
 import os
@@ -7,21 +9,22 @@ import pyAesCrypt
 from getpass import getpass
 
 pas = ''
+scriptFolder = os.path.dirname(__file__)
 
 def cryptdb(secret):
     global pas
     
-    encrypted_data = pyAesCrypt.encryptFile('./psw_db.db', './psw_db.encrypt', secret)
-    os.remove('psw_db.db')
+    encrypted_data = pyAesCrypt.encryptFile(scriptFolder+'/psw_db.db', scriptFolder+'/psw_db.encrypt', secret)
+    os.remove(scriptFolder+'/psw_db.db')
 
 def decryptdb(secret):
     global pas
     
-    plain_data = pyAesCrypt.decryptFile('./psw_db.encrypt', './psw_db.db', secret)
-    os.remove('psw_db.encrypt')
+    plain_data = pyAesCrypt.decryptFile(scriptFolder+'/psw_db.encrypt', scriptFolder+'/psw_db.db', secret)
+    os.remove(scriptFolder+'/psw_db.encrypt')
 
 def checkPassword(password):
-    f = open('config.psw', 'rb')
+    f = open(scriptFolder+'/config.psw', 'rb')
     data = f.read()
     f.close()
     salt = data[:32]
@@ -31,7 +34,7 @@ def checkPassword(password):
 
 def startup():
     #Check if user already exist
-    if not os.path.isfile('config.psw'):
+    if not os.path.isfile(scriptFolder+'/config.psw'):
         while not setPassword():
             pass
     
@@ -40,8 +43,8 @@ def startup():
     
 
 def login():
-   
-    if os.path.isfile('./config.psw'):
+
+    if os.path.isfile(scriptFolder+'/config.psw'):
         password = getpass()
         global pas
         pas = password
@@ -50,7 +53,7 @@ def login():
             decryptdb(pas)
             try:
                 #Decrypt test
-                db = sqlite3.connect('psw_db.db')
+                db = sqlite3.connect(scriptFolder+'/psw_db.db')
                 db.close()
             except:
                 print("Database decryption fault.")
@@ -64,7 +67,7 @@ def login():
     exit()
     
 def removeEntry(input_id):
-    db = sqlite3.connect('psw_db.db');
+    db = sqlite3.connect(scriptFolder+'/psw_db.db');
     cursor = db.cursor()
     data_cursor = cursor.execute('SELECT ID from psw_table where id = ?', (input_id))
     data = data_cursor.fetchall()
@@ -91,7 +94,7 @@ def setPassword():
             salt, # Provide the salt
             100000 # It is recommended to use at least 100,000 iterations of SHA-256 
         )
-        f = open('config.psw', 'wb')
+        f = open(scriptFolder+'/config.psw', 'wb')
         f.write(salt)
         f.write(key)
         f.close()
@@ -102,13 +105,13 @@ def setPassword():
     return False
 
 def change_password():
-    os.remove('config.psw')
+    os.remove(scriptFolder+'/config.psw')
     while not setPassword():
         pass
     
 def createpsw():
     try:
-        db = sqlite3.connect('psw_db.db')
+        db = sqlite3.connect(scriptFolder+'/psw_db.db')
         cursor = db.cursor()
     except:
         print('Error establishing connection with database')
@@ -128,7 +131,7 @@ def createpsw():
 
 def view():
     try:
-        db = sqlite3.connect('psw_db.db');
+        db = sqlite3.connect(scriptFolder+'/psw_db.db');
     except:
         print('Error establishing connection with database')
         exit()
@@ -147,7 +150,7 @@ def chgpsw():
     except:
         print('Please enter an integer number')
         return False
-    db = sqlite3.connect('psw_db.db')
+    db = sqlite3.connect(scriptFolder+'/psw_db.db')
     cursor = db.cursor()
     data_cursor = cursor.execute('SELECT ID from psw_table where id = ?', (id))
     data = data_cursor.fetchall()
