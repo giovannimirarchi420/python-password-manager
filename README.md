@@ -1,6 +1,6 @@
 # Password Manager
 
-A simple command-line tool to store securely all your password!
+A secure command-line tool for managing your passwords effectively.
 
 ## Table of Contents
 * [Why passwordManager?](#why-passwordmanager?)
@@ -16,33 +16,29 @@ A simple command-line tool to store securely all your password!
 
 ## Why passwordManager?
 
-In the times we live in, it becomes more and more daily to register on new sites or platforms, so we need to always enter new passwords, and let's face it, who is using a different password every time, knowing the risks we face ?
-Hence the need to have an efficient and secure password manager, who is able to store all the passwords and be able to retrieve them when needed.
+In today's digital world, we constantly encounter new websites and platforms requiring unique passwords. Remembering these passwords securely is a challenge. passwordManager offers a solution:
 
-The password manager proposed here will guarantee security and persistence to all your passwords, it will maintain an encrypted database, and only by entering the exact password (chosen at the first start) will you be able to access the data.
+  - Efficient and Secure Storage: It stores all your passwords in an encrypted database, accessible only with the master password you set upon initial launch.
+  - Enhanced Security: It eliminates the need to reuse passwords across different accounts, a critical security practice.
 
-A reason why not to use password manager? I don't know him, the choice is yours.
-
-Any suggestion / modification is welcome, in case of bugs please report them!
-
-I have no liability whatsoever for the use of this software 
+Let passwordManager safeguard your login credentials and simplify password management.
 
 ## Technologies and Libraries
-```
-Python 3.9.3 (programming language)
-sqlite3 (db)
-hashlib (library) --> Installed by default
-os (library) --> Installed by default
-base64 (library) --> Installed by default
-tabulate (library) --> Installed by default
-pyAesCrypt (library) --> NOT Installed by default, to install type: pip install pyAesCrypt
-sqlite3 (library) --> Installed by default for python 2.5 or greater
-```
+
+- **Python 3.9.3** (Programming Language)
+- **sqlite3** (Database Management) (Included by default in Python)
+- **hashlib** (Encryption) (Included by default in Python)
+- **os** (Operating System Interaction) (Included by default in Python)
+- **base64** (Encoding/Decoding) (Included by default in Python)
+- **tabulate** (Data Presentation) (Optional, install using pip install tabulate)
+- **pyAesCrypt** (Encryption Library) (Required, install using pip install pyAesCrypt)
+
 ## Setup
 ```
 $ git clone https://github.com/giovannimirarchi420/passwordManager
 $ python init.py
 ```
+## Optional Setup for Script-like Usage:
 Alteratively you can install ```pyAesCrypt``` library by yourself typing ```pip install pyAesCrypt```. 
 To use this tool like a real command line script (e.g. ls, mkdir, etc..), you need to add the script directory to the env variable PATH:
 ```
@@ -50,50 +46,45 @@ $ cd your/script/directory
 (We are into script dir)
 $ pwd
 (Copy the result of pwd)
-$ export PATH=$PATH:paste/here/the/path
+$ export PATH=$PATH:path/to/passwordManager
 ```
-Now you can rename pswManager.py into pswManager:
+**Note:** This modifies your environment variable so the script can be run from any directory. Consider this step carefully if you're unfamiliar with environment variables.
+
+Rename pswManager.py into pswManager:
 ```
 $ mv pswManager.py pswManager
 ```
-And make it executable
+Make the script executable
 ```
 $ chmod u+x pswManager
 ```
-Ok, now you can use pswManager from everywhere into your filesystem!
 
-## How to launch the tool
-To launch the tool type:
-```
-python pswManager.py
-```
-Or replace pswManager.py with the file path if you aren't in the same directory
+## Usage
+Launch the tool using ```python pswManager.py``` (or ```pswManager``` if you made it executable).
+Enter the master password you set during initialization.
 
 ## How it works
 
-When start the tool with ```python pswManager.py``` it ask you to set a new password for the tool, after this at every launch of the tool, you must insert the same password to access to database and command tool.
-When a password is setted, pswManager create a ```config.psw``` file, where is stored the encrypted password (sha256) combined with the salt, the salt is a random value generated at password choosing moment.
-After password choosing, on restart of the tool, pswManager extract the salt from config.psw file, encrypt with the same salt the provided password from user and go to check if the encrypted password stored in config.psw and the generated token is the same, if true the access is grant.
-The same token (password + salt), is the secret key for db encrypting/decrypting, using aes through pyAesCrypt module, so when ```exit``` command was launched from user, pswManager tool provide to encrypy and to decrypt at login phase.
+Run ```python pswManager.py``` and set a master password for the tool. This password is used to access the database and commands.
+The encrypted password (sha256) is stored in the ```config.psw``` file, combined with the salt, a random value.
+After you choose your password, the ```config.psw``` file acts as a secure source of authentication on all subsequent restarts. This file verifies the salted password you used during initial setup.
+The password stored in ```config.psw``` will act also as secret key for DB encrypting/decrypting.
 
 ## Commands
 
-There are only 4 simple command: (you can get them typing "help" after tool start)
-
-- createpsw --> It permit you to add a password into database, after call the command, the tool ask you all the needed info.
-- view --> View all password saved into db.
-- remove --> It permit you to remove a password from database, after call the command, the tool ask you all the needed info.
-- exit --> Exit from tool, it's really important to use this command, to ensure the db encryption and guarantee the correct behaviour to ne next session.
-- change-tool-psw -->   Change the passowrd for pswManager tool.
-- chgpsw -->   Change the password for the selected entry, after call the command, the tool ask you all the needed info.
+- **createpsw:** Adds a new password entry to the database.
+- **view:** Lists all stored passwords.
+- **remove:** Removes a specific password entry.
+- **exit:** Exits the tool securely, encrypting the database.
+- **change-tool-psw:** Changes the master password for the tool.
+- **chgpsw:** Changes the password for a specific entry.
+- **help:** Provide commands summary.
 
 ## Screenshot
 ![view-screen](./screenview.png)
 
 ## Author
 
-This project was made by Giovanni Mirarchi (alias @Hemek), BSc in Computer Engineering.
+This project was made by Giovanni Mirarchi (alias @Hemek)
 - Linkedin: https://www.linkedin.com/in/giovanni-mirarchi/
-- E-mail: giovanni.mirarchi\<at>hotmail.com
   
-  Feel free to contact me!.
